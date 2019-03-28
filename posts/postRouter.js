@@ -15,5 +15,15 @@ router.get("/", (req, res) => {
         })
       );
   });
+  router.get("/:id", (req, res) => {
+    Posts.getById(req.params.id)
+      .then((data) => res.json(data))
+      .catch((data) =>
+        res.status(500).json({
+          errorMessage: "The users information could not be retrieved."
+        })
+      );
+  });
+
 
   module.exports = router;

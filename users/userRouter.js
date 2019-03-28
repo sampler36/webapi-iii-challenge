@@ -23,14 +23,16 @@ router.get("/:id", (req, res) => {
         })
       );
   });
-router.get("/:id", (req, res) => {
-    Users.insert(req.params.id)
-      .then((data) => res.json(data))
-      .catch((data) =>
-        res.status(500).json({
-          errorMessage: "The users information could not be retrieved."
+  router.post('/', (req, res) => {
+    const  name  = req.body;
+      Users.insert(name)
+        .then(data => {
+          Users.get()
+            .then(data => res.status(201).json(data));
         })
-      );
-  });
+        .catch(error => res.status(500).json({
+          errorMessage: "Reload the ting"
+        }))
+    })
 
-module.exports = router;
+  module.exports = router;
