@@ -24,4 +24,44 @@ router.get("/", (req, res) => {
         })
       );
   });
+
+  router.post("/", (req, res) => {
+    const text = req.body;
+    Posts.insert(text)
+      .then((data) => {
+        Posts.get().then((data) => res.status(201).json(data));
+      })
+      .catch((error) =>
+        res.status(500).json({
+          errorMessage: "Reload the ting"
+        })
+      );
+  });
+  
+  // update()
+  router.put('/:id', (req, res) => {
+    const {id} = req.params;
+    if (id) {
+      Posts.update(id, {
+         text: req.body.text,
+         })
+        .then(data => {
+          if (data) {
+            Posts.get()
+              .then(data => res.json(data));
+          }
+          else {
+            res.status(404).json({
+              errorMessage: 'ID not found'
+            })
+          }
+        })
+        .catch(err => {
+          res.status(500).json({
+            errorMessage: 'Error'
+          });
+        });
+    }
+    
+  });
   module.exports = router;
