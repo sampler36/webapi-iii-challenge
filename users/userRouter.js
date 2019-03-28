@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     .then((data) => res.json(data))
     .catch((data) =>
       res.status(500).json({
-        errorMessage: 'Changed it for Experiments'
+        errorMessage: "Changed it for Experiments"
       })
     );
 });
@@ -21,7 +21,7 @@ router.get("/:id", (req, res) => {
     .then((data) => res.json(data))
     .catch((data) =>
       res.status(500).json({
-        errorMessage:'Something New'
+        errorMessage: "Something New"
       })
     );
 });
@@ -40,28 +40,25 @@ router.post("/", (req, res) => {
 });
 
 // update()
-router.put('/:id', (req, res) => {
-  const {id} = req.params;
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
   if (id) {
     Users.update(id, { name: req.body.name })
-      .then(data => {
+      .then((data) => {
         if (data) {
-          Users.get()
-            .then(data => res.json(data));
-        }
-        else {
+          Users.get().then((data) => res.json(data));
+        } else {
           res.status(404).json({
-            errorMessage: 'ID not found'
-          })
+            errorMessage: "ID not found"
+          });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).json({
-          errorMessage: 'Error'
+          errorMessage: "Error"
         });
       });
   }
-  
 });
 
 // delete
