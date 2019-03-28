@@ -32,5 +32,16 @@ server.get('/', (req, res) => {
 //     }
 //   }
   
+server.get('/', async (req, res) => {
+  try {
+    const shoutouts =  db('shoutouts');
+    const messageOfTheDay = process.env.MOTD || "MR DARKNESS WASSUP"
+    res.status(200).json({motd:messageOfTheDay, shoutouts});
+  } catch (error) {
+    console.error('\nERROR', error);
+    res.status(500).json({ error: 'Cannot retrieve the shoutouts' });
+  }
+});
+
 
 module.exports = server;
