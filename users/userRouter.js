@@ -62,6 +62,15 @@ router.put("/:id", (req, res) => {
 });
 
 // delete
-
+// router.delete("/:id", (req, res) => {
+//   const {id} = req.params;
+//   Users.remove(id)
+//     .then((data) => res.json(data))
+//     .catch((data) =>
+//       res.status(500).json({
+//         errorMessage: "Something New"
+//       })
+//     );
+// });
 
 module.exports = router;
