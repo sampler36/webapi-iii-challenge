@@ -23,5 +23,14 @@ router.get("/:id", (req, res) => {
         })
       );
   });
+router.get("/:id", (req, res) => {
+    Users.insert(req.params.id)
+      .then((data) => res.json(data))
+      .catch((data) =>
+        res.status(500).json({
+          errorMessage: "The users information could not be retrieved."
+        })
+      );
+  });
 
 module.exports = router;

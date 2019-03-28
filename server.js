@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const usersRouter = require('./users/userRouter');
+const postsRouter = require('./posts/postRouter');
 
 const server = express();
 
@@ -12,6 +13,7 @@ server.use(morgan('dev'));
 server.use(express.json());
 
 server.use('/users', usersRouter); // custom middleware
+server.use('/posts', postsRouter); // custom middleware
 
 server.get('/', (req, res) => {
   res.send('Hello World')
